@@ -20,17 +20,95 @@ namespace SnackShop.Controllers
 			return View();
 		}
 	
-	// NOTE: ADD CREATE
-	// NOTE: ADD CREATE POST
-	// NOTE: ADD READ
+		[HttpGet]
+		public ActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Create(Flavor flavor)
+		{
+			_db.Flavors.Add(flavor);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+
+		public ActionResult Read(int id)
+		{
+			Flavor thisFlavor = _db.Flavors
+			.Include(flavor => flavor.Treats)
+			.ThenInclude(join => join.Treat)
+			.FirstOrDefault(Flavor => Flavor.FlavorId == id);
+			return View(thisFlavor);
+		}
+	
 	// NOTE: ADD READ ALL
-	// NOTE: ADD EDIT
-	// NOTE: ADD EDIT POST
-	// NOTE: ADD DELETE
-	// NOTE: ADD DELETE CONFIRMATION
-	// NOTE: ADD ADD FLAVOR
-	// NOTE: ADD ADD FLAVOR POST
-	// NOTE: ADD DELETE FLAVOR
+
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+			Flavor thisFlavor = _db.Flavors
+			.FirstOrDefault(flavor => flavor.FlavorId == id);
+			return View(thisFlavor);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Flavor flavor)
+		{
+			_db.Entry(flavor).State = EntityState.Modified;
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+
+		}
+	
+		[HttpGet]
+		public ActionResult Delete(int id)
+		{
+			Flavor thisFlavor = _db.Flavors
+			.FirstOrDefault(flavor => flavor.FlavorId == id);
+			return View(thisFlavor);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public ActionResult DeleteConfirm(int id)
+		{
+			Flavor thisFlavor = _db.Flavors
+			.FirstOrDefault(flavor => flavor.FlavorId == id);
+			_db.Flavors.Remove(thisFlavor);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public ActionResult AddTreat(int id)
+		{
+			Flavor thisFlavor = _db.Flavors
+			.FirstOrDefault(flavor => flavor.FlavorId == id);
+			ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreadName");
+			return View(thisFlavor);
+		}
+
+		[HttpPost]
+		public ActionResult AddTreat(Flavor flavor, int TreatId)
+		{
+			if (TreatId != 0)
+			{
+				_db.TreatFlavor.Add(new TreatFlavor() {TreatId = TreatId, FlavorId = flavor.FlavorId});
+			}
+			_db.SaveChanges();
+			return RedirectToAction("Read", new {id = flavor.FlavorId});
+		}
+	
+		[HttpPost]
+		public ActionResult DeleteTreat(int joinId)
+		{
+			TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+			_db.TreatFlavor.Remove(joinEntry);
+			_db.SaveChanges();
+
+			return RedirectToAction("Read", new {id = joinEntry.FlavorId});
+		}
 	// NOTE: ADD DELETE ALL FLAVORS
 	// NOTE: ADD DELETE ALL FLAVORS CONFIRMATION
 	
