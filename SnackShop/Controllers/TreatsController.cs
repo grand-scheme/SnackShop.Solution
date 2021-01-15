@@ -108,5 +108,6 @@ namespace SnackShop.Controllers
 		}
 	
 		// NOTE: ADD DELETE ALL FLAVORS
+		// NOTE: ADD DELETE ALL FLAVORS CONFIRMATION
 	}
 }
