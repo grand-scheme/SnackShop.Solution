@@ -48,7 +48,8 @@ namespace SnackShop.Controllers
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
-			Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+			Treat thisTreat = _db.Treats
+			.FirstOrDefault(treat => treat.TreatId == id);
 			return View(thisTreat);
 		}
 
@@ -71,7 +72,8 @@ namespace SnackShop.Controllers
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirm(int id)
 		{
-			Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+			Treat thisTreat = _db.Treats
+			.FirstOrDefault(treat => treat.TreatId == id);
 			_db.Treats.Remove(thisTreat);
 			_db.SaveChanges();
 			return RedirectToAction("Index");
@@ -83,7 +85,8 @@ namespace SnackShop.Controllers
 		[HttpGet]
 		public ActionResult AddFlavor(int id)
 		{
-			Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+			Treat thisTreat = _db.Treats
+			.FirstOrDefault(treat => treat.TreatId == id);
 			ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
 			return View(thisTreat);
 		}
@@ -93,19 +96,22 @@ namespace SnackShop.Controllers
 		{
 			if (FlavorId !=0)
 			{
-				_db.TreatFlavor.Add(new TreatFlavor() {FlavorId = FlavorId, TreatId = treat.TreatId});
+				_db.TreatFlavor.Add(new TreatFlavor(){
+						FlavorId = FlavorId, TreatId = treat.TreatId
+					});
 			}
 			_db.SaveChanges();
-			return RedirectToAction("Read", new {id = treat.TreatId});
+			return RedirectToAction("Read", new { id = treat.TreatId } );
 		}
 
 		[HttpPost]
 		public ActionResult DeleteFlavor(int joinId)
 		{
-			TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+			TreatFlavor joinEntry = _db.TreatFlavor
+			.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
 			_db.TreatFlavor.Remove(joinEntry);
 			_db.SaveChanges();
-			return RedirectToAction("Read", new { id = joinEntry.TreatId});
+			return RedirectToAction("Read", new { id = joinEntry.TreatId } );
 		}
 	
 		// NOTE: ADD DELETE ALL FLAVORS
