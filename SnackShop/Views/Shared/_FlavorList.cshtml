@@ -1,0 +1,30 @@
+@using SnackShop.Models;
+@model List<SnackShop.Models.Flavor>;
+
+@if (
+  @ViewBag.Flavors.Count == 0
+  )
+{
+  @Html.ActionLink(
+    "Text", "Create", "Flavors"
+    )
+}
+else
+{
+  @foreach (
+    Flavor flavor in ViewBag.Flavors
+    )
+  {
+    @Html.ActionLink(
+      $"{flavor.FlavorName}",
+      "Read",
+      "Flavors",
+      new { id = flavor.FlavorId}
+    )
+  }
+  @Html.ActionLink(
+    "text",
+    "Index",
+    "Flavors"
+  )
+}
