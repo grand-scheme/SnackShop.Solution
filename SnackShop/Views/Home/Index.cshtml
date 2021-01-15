@@ -1,1 +1,11 @@
+@{
+  Layout = "_Layout";
+}
 
+<h1>
+  Header
+</h1>
+
+@await Html.PartialAsync("_TreatList", new List<SnackShop.Models.Treat>())
+<hr>
+@await Html.PartialAsync("_FlavorList", new List<SnackShop.Models.Flavor>())
