@@ -1,0 +1,1 @@
+using Microsoft.AspNetCore.Mvc;using SnackShop.Models;using System.Collections.Generic;namespace SnackShop.Controllers{	public class TreatsController : Controller	{		[HttpGet("/Treats")]		public ActionResult Index()		{			return View();		}	}}
