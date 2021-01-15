@@ -1,0 +1,32 @@
+@using SnackShop.Models;
+@model List<SnackShop.Models.Treat>;
+
+  @if(
+    ViewBag.Treats.Count == 0
+  )
+  {
+    @Html.ActionLink(
+      "text",
+      "Create",
+      "Treats"
+    )
+  }
+  else
+  {
+    @foreach (
+      Treat treat in ViewBag.Treats
+    )
+    {
+      @Html.ActionLink(
+        $"{treat.TreatName}",
+        "Read",
+        "Treats",
+        new { id = treat.TreatId }
+      )
+    }
+    @Html.ActionLink(
+      "text",
+      "Index",
+      "Treats"
+    )
+  }
