@@ -1,1 +1,16 @@
+@{
+  Layout = "_Layout";
+}
 
+@model SnackShop.Models.Flavor
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.FlavorName)
+  @Html.TextBoxFor(model => model.FlavorName)
+
+  @Html.LabelFor(model => model.FlavorTimeOfDay)
+  @Html.TextBoxFor(model => model.FlavorTimeOfDay)
+
+  <input type="submit" value="Save" />
+}

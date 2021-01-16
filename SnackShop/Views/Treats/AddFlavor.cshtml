@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SnackShop.Models.Treat
+
+@Html.DisplayFor(model => model.TreatName)
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+  @Html.Label("")
+  @Html.DropDownList("FlavorId")
+  <input type="submit" value="Save" />
+}
