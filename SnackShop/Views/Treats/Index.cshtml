@@ -14,7 +14,9 @@
   {
     @foreach (Treat treat in Model) 
     {
-      @Html.ActionLink($"{treat.TreatName}", "Read", new { id = treat.TreatId});
+      @Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId});
+      @Html.ActionLink($"Edit", "Edit", new { id = treat.TreatId} )
+      @Html.ActionLink($"Delete", "Delelte", new { id = treat.TreatId} )
     }
   }
 
