@@ -1,1 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+@using SnackShop.Models;
+@model SnackShop.Models.Treat;
 
+@Html.DisplayFor(model => model.TreatName)
+
+@Html.ActionLink("1", "AddFlavor", new { id = Model.TreatId })
+@Html.ActionLink("2", "Edit", new { id = Model.TreatId })
+@Html.ActionLink("3", "Delete", new { id = Model.TreatId })
+
+@if (@Model.Flavors.Count == 0)
+{
+  <p>
+    no
+  </p>
+}
+else
+{
+  @foreach (TreatFlavor treat in Model.Flavors)
+  {
+  @Html.ActionLink(
+    $"{treat.Treat.TreatName}",
+    "Details",
+    "Treats",
+    new { id = treat.TreatId }
+  )
+  @treat.Treat.TreatCalories
+  @treat.Treat.TreatId
+  @treat.Treat.TreatInStock
+  @treat.Treat.TreatPrice
+  }
+}

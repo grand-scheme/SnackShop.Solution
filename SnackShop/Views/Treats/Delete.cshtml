@@ -1,1 +1,13 @@
+@{
+  Layout = "_Layout";
+}
 
+@model SnackShop.Models.Treat
+
+@Html.DisplayFor(model => model.TreatName)
+@Html.DisplayFor(model => model.TreatPrice)
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
