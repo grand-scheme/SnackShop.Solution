@@ -8,7 +8,9 @@ namespace SnackShop.Models
 	public class Treat
 	{
 		public Treat()
-		{}
+		{
+			this.Flavors = new HashSet<TreatFlavor>();
+		}
 		public int TreatId {get; set;}
 		[DisplayName("Item:")]
 		public string TreatName  {get; set;}
