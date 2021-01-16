@@ -17,7 +17,8 @@ namespace SnackShop.Controllers
 		
 		public ActionResult Index()
 		{
-			return View();
+			List<Flavor> flavorList = _db.Flavors.ToList();
+			return View(flavorList);
 		}
 	
 		[HttpGet]
@@ -34,7 +35,7 @@ namespace SnackShop.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult Read(int id)
+		public ActionResult Details(int id)
 		{
 			Flavor thisFlavor = _db.Flavors
 			.Include(flavor => flavor.Treats)
@@ -97,7 +98,7 @@ namespace SnackShop.Controllers
 				_db.TreatFlavor.Add(new TreatFlavor() {TreatId = TreatId, FlavorId = flavor.FlavorId});
 			}
 			_db.SaveChanges();
-			return RedirectToAction("Read", new {id = flavor.FlavorId});
+			return RedirectToAction("Details", new {id = flavor.FlavorId});
 		}
 	
 		[HttpPost]
@@ -107,7 +108,7 @@ namespace SnackShop.Controllers
 			_db.TreatFlavor.Remove(joinEntry);
 			_db.SaveChanges();
 
-			return RedirectToAction("Read", new {id = joinEntry.FlavorId});
+			return RedirectToAction("Details", new {id = joinEntry.FlavorId});
 		}
 	// NOTE: ADD DELETE ALL FLAVORS
 	// NOTE: ADD DELETE ALL FLAVORS CONFIRMATION
