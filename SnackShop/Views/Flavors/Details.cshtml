@@ -30,7 +30,7 @@
 </tr>
 </table>
 
-<p>Treats associated with this item &mdash; @Html.ActionLink("Add new?", "AddTreat", new {id = Model.FlavorName } )
+<p>Treats associated with this item &mdash; @Html.ActionLink("Add new?", "AddTreat", new {id = Model.FlavorId } )
 @if (Model.Treats.Any())
 {
 <ul>
@@ -42,7 +42,12 @@ $"{treat.Treat.TreatName}",
 "Details",
 "Treats",
 new { id = treat.TreatId }
-)
+) &mdash; 
+@using (Html.BeginForm("DeleteTreat", "Flavors")) 
+{ 
+  @Html.Hidden("joinId", @treat.TreatFlavorId)
+  <input type="submit" value='delete @treat.Treat.TreatName' class="btn" /> 
+}
 </li>
 }
 </ul>
