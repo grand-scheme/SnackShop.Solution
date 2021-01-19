@@ -79,12 +79,13 @@ namespace SnackShop.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Edit(Treat treat)
 		{
+			int id = treat.TreatId;
 			var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 			var currentUser = await _userManager.FindByIdAsync(userId);
 			treat.User = currentUser;
 			_db.Entry(treat).State = EntityState.Modified;
 			_db.SaveChanges();
-			return RedirectToAction("Index");
+			return RedirectToAction("Details", new {id = id} );
 		}
 
 		[HttpGet]
@@ -151,8 +152,5 @@ namespace SnackShop.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Details", new { id = joinEntry.TreatId } );
 		}
-	
-		// NOTE: ADD DELETE ALL FLAVORS
-		// NOTE: ADD DELETE ALL FLAVORS CONFIRMATION
 	}
 }

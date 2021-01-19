@@ -67,12 +67,15 @@ namespace SnackShop.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Edit(Flavor flavor)
+		public async Task<ActionResult> Edit(Flavor flavor)
 		{
+			int id = flavor.FlavorId;
+			var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var currentUser = await _userManager.FindByIdAsync(userId);
+			flavor.User = currentUser;
 			_db.Entry(flavor).State = EntityState.Modified;
 			_db.SaveChanges();
-			return RedirectToAction("Index");
-
+			return RedirectToAction("Details", new {id = id});
 		}
 	
 		[HttpGet]
@@ -126,14 +129,20 @@ namespace SnackShop.Controllers
 
 			return RedirectToAction("Details", new {id = joinEntry.FlavorId});
 		}
-	// NOTE: ADD DELETE ALL FLAVORS
-	// NOTE: ADD DELETE ALL FLAVORS CONFIRMATION
-	
-	
-	
-	
-	
-	
+
+		[HttpGet]
+		public ActionResult DeleteAll()
+		{
+			return View();
+		}
+
+		[HttpPost, ActionName("DeleteAll")]
+		public ActionResult DeleteAllConfirm()
+		{
+			_db.Flavors.RemoveRange(_db.Flavors);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}	
 	
 	
 	
