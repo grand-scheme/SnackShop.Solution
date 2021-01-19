@@ -21,6 +21,8 @@ namespace SnackShop.Models
 		[DisplayName("Price:")]
 		public double TreatPrice  {get; set;}
 
+		public virtual ApplicationUser User {get;set;}
+
 		public virtual ICollection<TreatFlavor> Flavors {get;set;}
 	}
 }
