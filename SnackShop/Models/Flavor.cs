@@ -16,6 +16,7 @@ namespace SnackShop.Models
 		public string FlavorName {get;set;}
 		[DisplayName("Available from")]
 		public string FlavorTimeOfDay {get;set;}
+		public virtual ApplicationUser User {get;set;}
 
 		public virtual ICollection<TreatFlavor> Treats {get;set;}
 	}
