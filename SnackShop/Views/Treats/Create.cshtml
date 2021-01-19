@@ -8,19 +8,30 @@
 {
 <p>
   @Html.LabelFor(model => model.TreatName)
-  @Html.TextBoxFor(model => model.TreatName)
+  @Html.TextBoxFor(model => model.TreatName) <br />
+  The name your customers will call it by. <br />
+  Pick something memorable!
+</p>
+<p>  
+  @Html.LabelFor(model => model.TreatDescription)
+  @Html.TextBoxFor(model => model.TreatDescription) <br />
+  A short description of the treat. Ingredients and style are a good choice here. <br />
+  It should sound tasty!
 </p>
 <p>  
   @Html.LabelFor(model => model.TreatPrice)
-  @Html.TextBoxFor(model => model.TreatPrice)
+  @Html.TextBoxFor(model => model.TreatPrice) <br/>
+  How much is one (1) of these going to cost? 
 </p>
 <p>  
   @Html.LabelFor(model => model.TreatCalories)
-  @Html.TextBoxFor(model => model.TreatCalories)
+  @Html.TextBoxFor(model => model.TreatCalories) <br />
+  Number of calories per serving.
 </p>
 <p>  
   @Html.LabelFor(model => model.TreatInStock)
-  @Html.CheckBoxFor(model => model.TreatInStock, false)
+  @Html.CheckBoxFor(model => model.TreatInStock, false) <br />
+  Is there enough to sell? This can be toggled in the Edit page.
 </p>
 <p>
   <input type="submit" value="Save" class="btn" />

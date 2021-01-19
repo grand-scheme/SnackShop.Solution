@@ -8,15 +8,20 @@
 {
 <p>
   @Html.LabelFor(model => model.FlavorName)
-  @Html.TextBoxFor(model => model.FlavorName)
+  @Html.TextBoxFor(model => model.FlavorName) <br />
+  The common name for the taste. (Sweet, spicy, tart, etc...)
 </p>
 <p>
   @Html.LabelFor(model => model.FlavorDescription)
-  @Html.TextBoxFor(model => model.FlavorDescription)
+  @Html.TextBoxFor(model => model.FlavorDescription) <br />
+  This is where you can list the types of ingredients that get that special flavor. <br />
+  (E.g., <em>Made with freshly ground cinnamon</em>)
 </p>
 <p>
   @Html.LabelFor(model => model.FlavorTimeOfDay)
-  @Html.TextBoxFor(model => model.FlavorTimeOfDay)
+  @Html.TextBoxFor(model => model.FlavorTimeOfDay) <br />
+  When these kinds of treats will be sold! <br />
+  (Hearty, savory snacks should be early in the morning, and sugary sweets later on.)
 </p>
 <p>
   <input type="submit" value="Save" class="btn" />
