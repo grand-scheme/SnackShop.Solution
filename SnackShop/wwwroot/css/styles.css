@@ -1,5 +1,5 @@
 body {
-  background: #ccc;
+  background: #dcd;
   margin: 0rem 1rem;
 }
 
@@ -17,7 +17,7 @@ body {
 }
 
 .table tr:nth-child(odd) {
-  background-color:#cce;
+  background-color:#dde;
 }
 
 ul {
@@ -32,4 +32,13 @@ ul {
 .containment {
   margin-left: 5rem;
   margin-right: 5rem;
+}
+
+.btn {
+  background-color: #dde;
+  padding: .25rem .5rem;
+}
+
+li .btn {
+  margin-left: 3rem;
 }
