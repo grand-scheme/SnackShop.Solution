@@ -98,7 +98,7 @@ namespace SnackShop.Controllers
 		{
 			Flavor thisFlavor = _db.Flavors
 			.FirstOrDefault(flavor => flavor.FlavorId == id);
-			ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreadName");
+			ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "TreatName");
 			return View(thisFlavor);
 		}
 
@@ -107,10 +107,14 @@ namespace SnackShop.Controllers
 		{
 			if (TreatId != 0)
 			{
-				_db.TreatFlavor.Add(new TreatFlavor() {TreatId = TreatId, FlavorId = flavor.FlavorId});
+				_db.TreatFlavor.Add(
+					new TreatFlavor() {
+						TreatId = TreatId, FlavorId = flavor.FlavorId
+						});
 			}
 			_db.SaveChanges();
-			return RedirectToAction("Details", new {id = flavor.FlavorId});
+			return RedirectToAction(
+				"Details", new {id = flavor.FlavorId});
 		}
 	
 		[HttpPost]
