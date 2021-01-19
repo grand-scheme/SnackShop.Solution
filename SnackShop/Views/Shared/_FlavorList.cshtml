@@ -1,34 +1,16 @@
 @using SnackShop.Models;
 @model List<SnackShop.Models.Flavor>;
-
-@if (
-  @ViewBag.Flavors.Count == 0
-  )
+<strong>
+  @Html.ActionLink("Flavors:", "Index", "Flavors" )
+</strong>
+@if (@ViewBag.Flavors.Count != 0)
 {
-  @Html.ActionLink(
-    "Create new Flavor Profile", "Create", "Flavors"
-    )
-}
-else
-{
-  @foreach (
-    Flavor flavor in ViewBag.Flavors
-    )
+  <ul>
+  @foreach (Flavor flavor in ViewBag.Flavors)
   {
-    <p>
-      @Html.ActionLink(
-        $"{flavor.FlavorName}",
-        "Details",
-        "Flavors",
-        new { id = flavor.FlavorId}
-      )
-    </p>
+    <li>
+      @Html.ActionLink($"{flavor.FlavorName}", "Details", "Flavors", new { id = flavor.FlavorId })
+    </li>
   }
-  <p>
-    @Html.ActionLink(
-      "Flavor Profile Index",
-      "Index",
-      "Flavors"
-    )
-  </p>
+  </ul>
 }

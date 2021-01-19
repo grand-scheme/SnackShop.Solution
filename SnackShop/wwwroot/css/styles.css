@@ -42,3 +42,9 @@ ul {
 li .btn {
   margin-left: 3rem;
 }
+
+.button {
+  position:absolute;
+  top: .25rem;
+  right: .5rem;
+}

@@ -1,12 +1,13 @@
-@Html.ActionLink("Home", "Index", "Home")<br />
-@Html.ActionLink("Flavor Index", "Index", "Flavors")<br />
-@Html.ActionLink("Treat Index", "Index", "Treats")<br />
+<nav class="navigation">
+@Html.ActionLink("Home", "Index", "Home")
+@Html.ActionLink("Flavor Index", "Index", "Flavors")
+@Html.ActionLink("Treat Index", "Index", "Treats")
 
 @if (User.Identity.IsAuthenticated)
 {
   @using (Html.BeginForm("LogOff", "Account"))
   {
-    <input type="submit" value="log out" class="btn" />
+    <input type="submit" value="log out" class="btn button" />
   }
 }
 else
@@ -14,3 +15,4 @@ else
 @Html.ActionLink("Register Account", "Register", "Account")<br />
 @Html.ActionLink("Log in to account", "Login", "Account")
 }
+</nav>
