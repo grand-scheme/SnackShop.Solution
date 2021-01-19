@@ -14,15 +14,6 @@
         <th>
           Description:
         </th>
-        <th>
-          Calories:
-        </th>
-        <th>
-          Price:
-        </th>
-        <th>
-          In Stock?:
-        </th>
       </tr>
     @foreach (Treat treat in Model) 
     {
@@ -31,16 +22,7 @@
           @Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId})
         </td>
         <td>
-          [description]
-        </td>
-        <td>
-          @treat.TreatCalories
-        </td>
-        <td>
-          $@treat.TreatPrice
-        </td>
-        <td>
-          @Html.DisplayFor(model => treat.TreatInStock)
+          @treat.TreatDescription
         </td>
       </tr>
     }
