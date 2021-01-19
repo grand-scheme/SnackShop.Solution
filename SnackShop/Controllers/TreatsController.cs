@@ -105,8 +105,18 @@ namespace SnackShop.Controllers
 			return RedirectToAction("Index");
 		}
 
-		// NOTE: ADD DELETE ALL
-		// NOTE: ADD DELETE ALL (CONFIRMATION)
+		[HttpGet]
+		public ActionResult DeleteAll()
+		{
+			return View();
+		}
+		[HttpPost, ActionName("DeleteAll")]
+		public ActionResult DeleteAllConfirm()
+		{
+			_db.Treats.RemoveRange(_db.Treats);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	
 		[HttpGet]
 		public ActionResult AddFlavor(int id)
