@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SnackShop.ViewModels
+@model LoginViewModel
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Email)
+  @Html.TextBoxFor(model => model.Email)
+
+  @Html.LabelFor(model => model.Password)
+  @Html.PasswordFor(model => model.Password)
+
+  <input type="submit" value="log in" />
+}
