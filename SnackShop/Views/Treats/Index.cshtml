@@ -14,10 +14,17 @@
   {
     @foreach (Treat treat in Model) 
     {
+      <p>
       @Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId});
+      </p>
+      <p>
       @Html.ActionLink($"Edit", "Edit", new { id = treat.TreatId} )
-      @Html.ActionLink($"Delete", "Delelte", new { id = treat.TreatId} )
+      </p>
+      <p>
+      @Html.ActionLink($"Delete", "Delete", new { id = treat.TreatId} )
+      </p>
     }
   }
-
+<p>
   @Html.ActionLink("Add", "Create")
+  </p>

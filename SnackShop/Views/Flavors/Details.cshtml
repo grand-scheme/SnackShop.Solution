@@ -4,13 +4,18 @@
 
 @model SnackShop.Models.Flavor
 @using SnackShop.Models;
-
+<p>
 @Html.DisplayFor(model => model.FlavorName)
-
-@Html.ActionLink("1", "AddTreat", new {id = Model.FlavorName } )
-@Html.ActionLink("2", "Edit", new {id = Model.FlavorName } )
-@Html.ActionLink("3", "Delete", new {id = Model.FlavorName } )
-
+</p>
+<p>
+@Html.ActionLink("Add a treat to this flavor profile", "AddTreat", new {id = Model.FlavorName } )
+</p>
+<p>
+@Html.ActionLink("Edit this flavor profile", "Edit", new {id = Model.FlavorName } )
+</p>
+<p>
+@Html.ActionLink("Delete this flavor profile", "Delete", new {id = Model.FlavorName } )
+</p>
 @if (Model.Treats.Count == 0)
 {
   <p>
@@ -21,12 +26,15 @@ else
 {
   @foreach (TreatFlavor flavor in Model.Treats)
   {
+    <p>
     @Html.ActionLink(
       $"{flavor.Flavor.FlavorName}",
       "Details",
       "Flavors",
       new { id = flavor.FlavorId }
     )
+    &mdash;
     @flavor.Flavor.FlavorTimeOfDay
+    </p>
   }
 }

@@ -6,7 +6,7 @@
   )
 {
   @Html.ActionLink(
-    "Text", "Create", "Flavors"
+    "Create new Flavor Profile", "Create", "Flavors"
     )
 }
 else
@@ -15,16 +15,20 @@ else
     Flavor flavor in ViewBag.Flavors
     )
   {
-    @Html.ActionLink(
-      $"{flavor.FlavorName}",
-      "Details",
-      "Flavors",
-      new { id = flavor.FlavorId}
-    )
+    <p>
+      @Html.ActionLink(
+        $"{flavor.FlavorName}",
+        "Details",
+        "Flavors",
+        new { id = flavor.FlavorId}
+      )
+    </p>
   }
-  @Html.ActionLink(
-    "text",
-    "Index",
-    "Flavors"
-  )
+  <p>
+    @Html.ActionLink(
+      "Flavor Profile Index",
+      "Index",
+      "Flavors"
+    )
+  </p>
 }

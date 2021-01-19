@@ -4,11 +4,28 @@
 @using SnackShop.Models;
 @model SnackShop.Models.Treat
 
+<p>
 @Html.DisplayFor(model => model.TreatName)
+</p>
+<p>
+@Html.DisplayFor(model => model.TreatCalories)
+</p>
+<p>
+@Html.DisplayFor(model => model.TreatInStock)
+</p>
+<p>
+@Html.DisplayFor(model => model.TreatPrice)
+</p>
 
-@Html.ActionLink("1", "AddFlavor", new { id = Model.TreatId })
-@Html.ActionLink("2", "Edit", new { id = Model.TreatId })
-@Html.ActionLink("3", "Delete", new { id = Model.TreatId })
+<p>
+@Html.ActionLink("Add a flavor to this treat's profile", "AddFlavor", new { id = Model.TreatId })
+</p>
+<p>
+@Html.ActionLink("Edit this treat's profile", "Edit", new { id = Model.TreatId })
+</p>
+<p>
+@Html.ActionLink("Delete this treat", "Delete", new { id = Model.TreatId })
+</p>
 
 @if (@Model.Flavors.Count == 0)
 {
@@ -20,15 +37,13 @@ else
 {
   @foreach (TreatFlavor treat in Model.Flavors)
   {
+    <p>
   @Html.ActionLink(
     $"{treat.Treat.TreatName}",
     "Details",
     "Treats",
     new { id = treat.TreatId }
   )
-  @treat.Treat.TreatCalories
-  @treat.Treat.TreatId
-  @treat.Treat.TreatInStock
-  @treat.Treat.TreatPrice
+  </p>
   }
 }

@@ -6,7 +6,7 @@
   )
   {
     @Html.ActionLink(
-      "text",
+      "Create new Treat Profile",
       "Create",
       "Treats"
     )
@@ -17,15 +17,17 @@
       Treat treat in ViewBag.Treats
     )
     {
+      <p>
       @Html.ActionLink(
         $"{treat.TreatName}",
         "Details",
         "Treats",
         new { id = treat.TreatId }
       )
+      </p>
     }
     @Html.ActionLink(
-      "text",
+      "Treat Profile Index",
       "Index",
       "Treats"
     )

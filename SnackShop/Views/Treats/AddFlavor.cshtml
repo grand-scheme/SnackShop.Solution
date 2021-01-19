@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.TreatId)
-  @Html.Label("")
+  @Html.Label("Add which flavor to this treat?")
   @Html.DropDownList("FlavorId")
   <input type="submit" value="Save" />
 }

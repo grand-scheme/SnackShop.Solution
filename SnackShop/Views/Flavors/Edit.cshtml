@@ -3,18 +3,21 @@
 }
 
 @model SnackShop.Models.Flavor
-
+<p>
 @Html.DisplayFor(model => model.FlavorName)
-
+</p>
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.FlavorId)
-
-  @Html.LabelFor(model => model.FlavorName)
-  @Html.TextBoxFor(model => model.FlavorName)
-  
-  @Html.LabelFor(model => model.FlavorTimeOfDay)
-  @Html.TextBoxFor(model => model.FlavorTimeOfDay)
-
-  <input type="submit" value="Save" />
+  <p>
+    @Html.LabelFor(model => model.FlavorName)
+    @Html.TextBoxFor(model => model.FlavorName)
+  </p>
+  <p>
+    @Html.LabelFor(model => model.FlavorTimeOfDay)
+    @Html.TextBoxFor(model => model.FlavorTimeOfDay)
+  </p>
+  <p>
+    <input type="submit" value="Save" />
+  </p>
 }
