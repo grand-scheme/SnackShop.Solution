@@ -8,23 +8,26 @@
 <table class="table">
 <tr>
 <th colspan="6">
+@Html.LabelFor(model => model.FlavorName)
 @Html.DisplayFor(model => model.FlavorName)
 </th>
 </tr>
 
 <tr>
 <td>
-[ description ]
+@Html.LabelFor(model => model.FlavorDescription)
+@Html.DisplayFor(model => model.FlavorDescription)
 </td>
 <td>
-[ available ]
+@Html.LabelFor(model => model.FlavorTimeOfDay)
+@Html.DisplayFor(model => model.FlavorTimeOfDay)
 </td>
 @if (User.Identity.IsAuthenticated) {
 <td>
-@Html.ActionLink("Edit", "Edit", new {id = Model.FlavorName } )
+@Html.ActionLink("Edit", "Edit", new {id = Model.FlavorId } )
 </td>
 <td>
-@Html.ActionLink("Delete", "Delete", new {id = Model.FlavorName } )
+@Html.ActionLink("Delete", "Delete", new {id = Model.FlavorId } )
 </td>
 }
 </tr>

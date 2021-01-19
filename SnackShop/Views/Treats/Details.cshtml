@@ -13,24 +13,37 @@
 
   <tr>
     <td>
-      Description:
+      @Html.LabelFor(model => model.TreatDescription)
+      @Html.DisplayFor(model => model.TreatDescription)
     </td>
     <td>
-      Calories: @Html.DisplayFor(model => model.TreatCalories)
+      @Html.LabelFor(model => model.TreatCalories)
+      @Html.DisplayFor(model => model.TreatCalories)
     </td>
     <td>
-      Price: $ @Html.DisplayFor(model => model.TreatPrice)
+      @Html.LabelFor(model => model.TreatPrice)
+      $ @Html.DisplayFor(model => model.TreatPrice)
     </td>
-    <td>
-      In Stock?: @Html.DisplayFor(model => model.TreatInStock)
-    </td>
-    @if (User.Identity.IsAuthenticated) {
-    <td>
-      @Html.ActionLink("Edit", "Edit", new { id = Model.TreatId })
-    </td>
-    <td>
-      @Html.ActionLink("Delete", "Delete", new { id = Model.TreatId })
-    </td>
+    @if (Model.TreatInStock == true) 
+    {
+      <td>
+        @Html.LabelFor(model => model.TreatInStock) Yes
+      </td>
+    }
+    else
+    {
+      <td>
+        @Html.LabelFor(model => model.TreatInStock) No
+      </td>
+    }
+    @if (User.Identity.IsAuthenticated) 
+    {
+      <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TreatId })
+      </td>
+      <td>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.TreatId })
+      </td>
     }
   </tr>
 </table>
@@ -48,7 +61,12 @@
         "Details",
         "Flavors",
         new { id = flavor.FlavorId }
-        )
+        ) &mdash;
+        @using (Html.BeginForm("DeleteFlavor", "Treats"))
+        {
+          @Html.Hidden("joinId", @flavor.TreatFlavorId)
+          <input type="submit" value="delete @flavor.Flavor.FlavorName" class="btn" />
+        }
     </li>
     }
   </ul>
