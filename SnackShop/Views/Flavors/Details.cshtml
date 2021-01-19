@@ -4,37 +4,46 @@
 
 @model SnackShop.Models.Flavor
 @using SnackShop.Models;
-<p>
+
+<table class="table">
+<tr>
+<th colspan="6">
 @Html.DisplayFor(model => model.FlavorName)
-</p>
-<p>
-@Html.ActionLink("Add a treat to this flavor profile", "AddTreat", new {id = Model.FlavorName } )
-</p>
-<p>
-@Html.ActionLink("Edit this flavor profile", "Edit", new {id = Model.FlavorName } )
-</p>
-<p>
-@Html.ActionLink("Delete this flavor profile", "Delete", new {id = Model.FlavorName } )
-</p>
-@if (Model.Treats.Count == 0)
-{
-  <p>
-    no
-  </p>
+</th>
+</tr>
+
+<tr>
+<td>
+[ description ]
+</td>
+<td>
+[ available ]
+</td>
+@if (User.Identity.IsAuthenticated) {
+<td>
+@Html.ActionLink("Edit", "Edit", new {id = Model.FlavorName } )
+</td>
+<td>
+@Html.ActionLink("Delete", "Delete", new {id = Model.FlavorName } )
+</td>
 }
-else
+</tr>
+</table>
+
+<p>Treats associated with this item &mdash; @Html.ActionLink("Add new?", "AddTreat", new {id = Model.FlavorName } )
+@if (Model.Treats.Any())
 {
-  @foreach (TreatFlavor flavor in Model.Treats)
-  {
-    <p>
-    @Html.ActionLink(
-      $"{flavor.Flavor.FlavorName}",
-      "Details",
-      "Flavors",
-      new { id = flavor.FlavorId }
-    )
-    &mdash;
-    @flavor.Flavor.FlavorTimeOfDay
-    </p>
-  }
+<ul>
+@foreach (TreatFlavor treat in Model.Treats)
+{
+<li>
+@Html.ActionLink(
+$"{treat.Treat.TreatName}",
+"Details",
+"Treats",
+new { id = treat.TreatId }
+)
+</li>
+}
+</ul>
 }
