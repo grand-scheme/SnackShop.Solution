@@ -14,6 +14,8 @@ namespace SnackShop.Models
 		public int TreatId {get; set;}
 		[DisplayName("Item:")]
 		public string TreatName  {get; set;}
+		[DisplayName("Description:")]
+		public string TreatDescription {get;set; }
 		[DisplayName("Calories:")]
 		public int TreatCalories {get; set;}
 		[DisplayName("In Stock:")]

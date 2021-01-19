@@ -122,12 +122,14 @@ namespace SnackShop.Controllers
 		{
 			if (FlavorId !=0)
 			{
-				_db.TreatFlavor.Add(new TreatFlavor(){
+				_db.TreatFlavor.Add(
+					new TreatFlavor(){
 						FlavorId = FlavorId, TreatId = treat.TreatId
 					});
 			}
 			_db.SaveChanges();
-			return RedirectToAction("Details", new { id = treat.TreatId } );
+			return RedirectToAction(
+				"Details", new { id = treat.TreatId } );
 		}
 
 		[HttpPost]
