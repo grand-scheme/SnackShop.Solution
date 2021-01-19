@@ -4,23 +4,40 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using SnackShop.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SnackShop.Controllers
 {
+	[Authorize]
 	public class TreatsController : Controller
 	{
 		private readonly SnackShopContext _db;
-		public TreatsController(SnackShopContext db)
+		private readonly UserManager<ApplicationUser> _userManager;
+
+		public TreatsController(UserManager<ApplicationUser> userManager, SnackShopContext db)
 		{
+			_userManager = userManager;
 			_db = db;
 		}
 
+		[AllowAnonymous]
 		[HttpGet]
 		public ActionResult Index()
 		{
 			List<Treat> treatList = _db.Treats.ToList();
 			return View(treatList);
 		}
+		// [HttpGet]
+		// public async Task<ActionResult> Index()
+		// {
+			// var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			// var currentUser = await _userManager.FindByIdAsync(userId);
+			// List<Treat> treatList = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+			// return View(treatList);
+	// }
 	
 		[HttpGet]
 		public ActionResult Create()
@@ -29,13 +46,17 @@ namespace SnackShop.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create(Treat treat)
+		public async Task<ActionResult> Create(Treat treat)
 		{
+			var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var currentUser = await _userManager.FindByIdAsync(userId);
+			treat.User = currentUser;
 			_db.Treats.Add(treat);
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
 	
+		[AllowAnonymous]
 		public ActionResult Details(int id)
 		{
 			Treat thisTreat = _db.Treats
@@ -56,8 +77,11 @@ namespace SnackShop.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Edit(Treat treat)
+		public async Task<ActionResult> Edit(Treat treat)
 		{
+			var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var currentUser = await _userManager.FindByIdAsync(userId);
+			treat.User = currentUser;
 			_db.Entry(treat).State = EntityState.Modified;
 			_db.SaveChanges();
 			return RedirectToAction("Index");
