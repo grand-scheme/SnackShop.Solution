@@ -1,0 +1,35 @@
+body {
+  background: #ccc;
+  margin: 0rem 1rem;
+}
+
+.navigation {
+  margin-bottom:2rem;
+  font-size: 1.75rem;
+}
+
+.navigation a:first-of-type {
+  margin:1rem;
+}
+
+.navigation a {
+  margin:3rem;
+}
+
+.table tr:nth-child(odd) {
+  background-color:#cce;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.view-all {
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.containment {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
