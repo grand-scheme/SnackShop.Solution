@@ -54,7 +54,7 @@ namespace SnackShop.Controllers
       Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
       if (result.Succeeded)
       {
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
       }
       else
       {
@@ -66,7 +66,7 @@ namespace SnackShop.Controllers
     public async Task<ActionResult> LogOff()
     {
       await _signInManager.SignOutAsync();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
     }
   }
 }
