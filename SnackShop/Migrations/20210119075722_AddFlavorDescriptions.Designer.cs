@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnackShop.Models;
 
 namespace SnackShop.Migrations
 {
     [DbContext(typeof(SnackShopContext))]
-    partial class SnackShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210119075722_AddFlavorDescriptions")]
+    partial class AddFlavorDescriptions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
