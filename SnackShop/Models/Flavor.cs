@@ -14,8 +14,10 @@ namespace SnackShop.Models
 		public int FlavorId {get;set;}
 		[DisplayName("Flavor:")]
 		public string FlavorName {get;set;}
-		[DisplayName("Available from")]
+		[DisplayName("Available from:")]
 		public string FlavorTimeOfDay {get;set;}
+		[DisplayName("Description:")]
+		public string FlavorDescription {get;set;}
 		public virtual ApplicationUser User {get;set;}
 
 		public virtual ICollection<TreatFlavor> Treats {get;set;}
