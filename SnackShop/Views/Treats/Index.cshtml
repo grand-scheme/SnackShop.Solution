@@ -4,27 +4,48 @@
 
 @using SnackShop.Models;
 @model List<SnackShop.Models.Treat>;
-  @if (@Model.Count == 0)
+  @if (@Model.Any())
   {
-    <p>
-      NOTHING
-    </p>
-  }
-  else
-  {
+    <table class="table">
+      <tr>
+        <th>
+          Treat Name:
+        </th>
+        <th>
+          Description:
+        </th>
+        <th>
+          Calories:
+        </th>
+        <th>
+          Price:
+        </th>
+        <th>
+          In Stock?:
+        </th>
+      </tr>
     @foreach (Treat treat in Model) 
     {
-      <p>
-      @Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId});
-      </p>
-      <p>
-      @Html.ActionLink($"Edit", "Edit", new { id = treat.TreatId} )
-      </p>
-      <p>
-      @Html.ActionLink($"Delete", "Delete", new { id = treat.TreatId} )
-      </p>
+      <tr>
+        <td>
+          @Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId})
+        </td>
+        <td>
+          [description]
+        </td>
+        <td>
+          @treat.TreatCalories
+        </td>
+        <td>
+          $@treat.TreatPrice
+        </td>
+        <td>
+          @Html.DisplayFor(model => treat.TreatInStock)
+        </td>
+      </tr>
     }
+    </table>
   }
 <p>
-  @Html.ActionLink("Add", "Create")
+  @Html.ActionLink("Add New Treat", "Create")
   </p>
