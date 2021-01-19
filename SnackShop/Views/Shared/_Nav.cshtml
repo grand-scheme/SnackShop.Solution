@@ -1,5 +1,16 @@
 @Html.ActionLink("Home", "Index", "Home")<br />
 @Html.ActionLink("Flavor Index", "Index", "Flavors")<br />
 @Html.ActionLink("Treat Index", "Index", "Treats")<br />
-@Html.ActionLink("Register Account", "Index", "Account")
+
+@if (User.Identity.IsAuthenticated)
+{
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" value="log out" />
+  }
+}
+else
+{
+@Html.ActionLink("Register Account", "Register", "Account")<br />
 @Html.ActionLink("Log in to account", "Login", "Account")
+}
