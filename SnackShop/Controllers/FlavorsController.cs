@@ -56,8 +56,6 @@ namespace SnackShop.Controllers
 			return View(thisFlavor);
 		}
 	
-	// NOTE: ADD READ ALL
-
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
