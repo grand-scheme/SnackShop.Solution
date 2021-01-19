@@ -14,6 +14,9 @@
         <th>
           Description:
         </th>
+        <th>
+          Price:
+        </th>
       </tr>
     @foreach (Treat treat in Model) 
     {
@@ -24,6 +27,9 @@
         <td>
           @treat.TreatDescription
         </td>
+        <td>
+          @treat.TreatPrice
+        </td>
       </tr>
     }
     </table>
@@ -31,4 +37,4 @@
 <p>
   @Html.ActionLink("Add New Treat", "Create")
   @Html.ActionLink("Delete All Treats", "DeleteAll")
-  </p>
+</p>

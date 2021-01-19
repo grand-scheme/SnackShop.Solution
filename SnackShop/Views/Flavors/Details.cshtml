@@ -6,52 +6,52 @@
 @using SnackShop.Models;
 
 <table class="table">
-<tr>
-<th colspan="6">
-@Html.LabelFor(model => model.FlavorName)
-@Html.DisplayFor(model => model.FlavorName)
-</th>
-</tr>
-
-<tr>
-<td>
-@Html.LabelFor(model => model.FlavorDescription)
-@Html.DisplayFor(model => model.FlavorDescription)
-</td>
-<td>
-@Html.LabelFor(model => model.FlavorTimeOfDay)
-@Html.DisplayFor(model => model.FlavorTimeOfDay)
-</td>
-@if (User.Identity.IsAuthenticated) {
-<td>
-@Html.ActionLink("Edit", "Edit", new {id = Model.FlavorId } )
-</td>
-<td>
-@Html.ActionLink("Delete", "Delete", new {id = Model.FlavorId } )
-</td>
-}
-</tr>
+  <tr>
+    <th colspan="6">
+      @Html.LabelFor(model => model.FlavorName)
+      @Html.DisplayFor(model => model.FlavorName)
+    </th>
+  </tr>
+  <tr>
+  <td>
+    @Html.LabelFor(model => model.FlavorDescription)
+    @Html.DisplayFor(model => model.FlavorDescription)
+  </td>
+  <td>
+    @Html.LabelFor(model => model.FlavorTimeOfDay)
+    @Html.DisplayFor(model => model.FlavorTimeOfDay)
+  </td>
+  @if (User.Identity.IsAuthenticated) 
+  {
+    <td>
+      @Html.ActionLink("Edit", "Edit", new {id = Model.FlavorId } )
+    </td>
+    <td>
+      @Html.ActionLink("Delete", "Delete", new {id = Model.FlavorId } )
+    </td>
+  }
+  </tr>
 </table>
 
-<p>Treats associated with this item &mdash; @Html.ActionLink("Add new?", "AddTreat", new {id = Model.FlavorId } )
-@if (Model.Treats.Any())
-{
-<ul>
-@foreach (TreatFlavor treat in Model.Treats)
-{
-<li>
-@Html.ActionLink(
-$"{treat.Treat.TreatName}",
-"Details",
-"Treats",
-new { id = treat.TreatId }
-) &mdash; 
-@using (Html.BeginForm("DeleteTreat", "Flavors")) 
-{ 
-  @Html.Hidden("joinId", @treat.TreatFlavorId)
-  <input type="submit" value='delete @treat.Treat.TreatName' class="btn" /> 
-}
-</li>
-}
-</ul>
-}
+<p>
+  Treats associated with this item 
+  &mdash; 
+  @Html.ActionLink("Add new?", "AddTreat", new {id = Model.FlavorId } )
+  @if (Model.Treats.Any())
+  {
+    <ul>
+      @foreach (TreatFlavor treat in Model.Treats)
+      {
+        <li>
+          @Html.ActionLink($"{treat.Treat.TreatName}", "Details", "Treats", new { id = treat.TreatId }) 
+          &mdash; 
+          @using (Html.BeginForm("DeleteTreat", "Flavors")) 
+          { 
+            @Html.Hidden("joinId", @treat.TreatFlavorId)
+            <input type="submit" value='delete @treat.Treat.TreatName' class="btn" /> 
+          }
+        </li>
+      }
+    </ul>
+  }
+</p>
